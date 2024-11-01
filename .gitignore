@@ -1,0 +1,20 @@
+# Ignore the Xilinx Unisim Library directory
+XilinxUnisimLibrary/
+
+# Ignore simulation output files
+*.vcd
+*.log
+
+# Ignore build files for simulation and synthesis
+*-sim
+*-gatesim
+*.netlist.v
+
+# Ignore all generated executables
+*-sim
+*-gatesim
+
+# Ignore backup or temporary files
+*.bak
+*.tmp
+*~
