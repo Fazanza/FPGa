@@ -5,7 +5,7 @@ SHELL := /bin/bash -o pipefail
 # Change this one line
 var ?= synchronous_fifo
 
-DUT ?= $(var).v
+DUT ?= $(var).sv
 SYNTH_TIMEOUT ?= 60
 XILINX_CELLS_URL ?= https://github.com/Xilinx/XilinxUnisimLibrary.git
 XILINX_CELLS_DIR ?= XilinxUnisimLibrary/verilog/src
@@ -17,7 +17,7 @@ all: sim synth gatesim
 sim: $(var)-sim
 	./$< +VCDFILE=sim.vcd +VCDLEVEL=0 | tee sim.log
 
-$(var)-sim: $(var)_tb.v ${DUT} | ${XILINX_CELLS_DIR}
+$(var)-sim: $(var)_tb.sv ${DUT} | ${XILINX_CELLS_DIR}
 	${IVERILOG} -g2005-sv -s $(var)_tb -y ${XILINX_CELLS_DIR} -o $@ $^
 
 synth: $(var).netlist.v
@@ -31,7 +31,7 @@ ${XILINX_CELLS_DIR}:
 gatesim: ./$(var)-gatesim
 	./$< +VCDFILE=gatesim.vcd +VCDLEVEL=1 | tee gatesim.log
 
-$(var)-gatesim: $(var)_tb.v $(var).netlist.v | ${XILINX_CELLS_DIR}
+$(var)-gatesim: $(var)_tb.sv $(var).netlist.v | ${XILINX_CELLS_DIR}
 	${IVERILOG} -g2005-sv -s $(var)_tb -DGATESIM -y ${XILINX_CELLS_DIR} -y ${XILINX_CELLS_DIR}/unisims -o $@ $^
 
 clean:

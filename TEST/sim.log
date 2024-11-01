@@ -1,3 +1,0 @@
-synchronous_fifo_tb.v:53: $stop called at 45000 (1ps)
-** VVP Stop(0) **
-** Flushing output streams.
