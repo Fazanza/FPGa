@@ -14,7 +14,7 @@ module wptr_full #(
   // GRAYSTYLE2 pointer
   always @(posedge wclk or negedge wrst_n) begin
     if (!wrst_n) {wbin, wptr} <= 0;
-    else         {wbin, wptr} <= {wbinnext, wgratnext};
+    else         {wbin, wptr} <= {wbinnext, wgraynext};
   end
 
   assign waddr = wbin[ADDRSIZE-1:0];

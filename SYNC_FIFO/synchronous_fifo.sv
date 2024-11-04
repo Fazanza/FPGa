@@ -1,14 +1,15 @@
 module synchronous_fifo #(
   parameter ASIZE = 16,
-  parameter DSIZE = 8,
-  parameter ABITS = $clog2(ASIZE)
+  parameter DSIZE = 8
 ) (
   input clk, rstn,
   input wr_en, rd_en,
   input [DSIZE-1:0] din,
   output full, empty,
-  output reg [DSIZE-1:0] dout
+  output logic [DSIZE-1:0] dout
 );
+  localparam ABITS = $clog2(ASIZE);
+
   logic [DSIZE-1:0] mem [ASIZE-1:0];
   logic [ABITS:0] wr_ptr, rd_ptr;
 
