@@ -9,7 +9,6 @@
 - CLK Dividers
 
 ### TODO:
-- ASYNC FIFO
 - RR_Arbiter
 - Fractional CLK didivers
 - read/valid protocol
